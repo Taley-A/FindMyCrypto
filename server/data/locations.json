@@ -1,0 +1,49 @@
+[
+	{
+		"name": "Depanneur 7 Jours Soleil",
+		"address": "9558 Rue Jean-Milot, LaSalle, QC H8R 1X7",
+		"type": "Buy/Sell",
+		"cryptocurrencies": "Bitcoin, Litecoin and Ethereum",
+		"kyc": "None required",
+		"open": "Monday to Saturday 8AM to 11PM. Sunday 8:30AM to 11PM.",
+		"status": "Online to Buy and Sell.",
+		"manufacturer": "Crypto Club Inc.",
+		"atmId": "88a33c23-3332-4ef2-bd71-be7a6430485f",
+		"ownerEmail": "sasuke.uchiha@gmail.com"
+	},
+	{
+		"name": "Kojax Souflaki Restaurant in Dollard-des-Ormeaux",
+		"address": "3343 Sources Blvd, Dollard-Des Ormeaux, QC H9B 1Z8",
+		"type": "Buy/Sell",
+		"cryptocurrencies": "Bitcoin, Litecoin, Ethereum, Dogecoin, etc.",
+		"kyc": "Optional",
+		"open": "Monday to Sunday 11AM to 8PM.",
+		"status": "Online to Buy and Sell.",
+		"manufacturer": "Lamassu",
+		"atmId": "14lo23kj-3332-4ef2-bd71-ch45ui87dg12kk0",
+		"ownerEmail": "kakashi.hatake@gmail.com"
+	},
+	{
+		"name": "Provi-Soir",
+		"address": "10640 Blvd. Pie-IX, Montreal, QC H2X 3V4",
+		"type": "Buy/Sell",
+		"cryptocurrencies": "Bitcoin, Litecoin and Ethereum",
+		"kyc": "None required",
+		"open": "Monday to Saturday 6AM to 11PM. Sunday 7AM to 11PM.",
+		"status": "Online to Buy and Sell.",
+		"manufacturer": "Crypto Club Inc.",
+		"atmId": "g6ty33kv61-3332-4ef2-bd71-mb97vg45dg14ad88",
+		"ownerEmail": "sasuke.uchiha@gmail.com"
+	},
+	{
+		"name": "MacKay Convenience Store - Downtown",
+		"address": "1434, rue MacKay, Montreal, QC H3G 2H7",
+		"type": "Buy/Sell",
+		"cryptocurrencies": "Bitcoin, Litecoin and Ethereum",
+		"kyc": "None required",
+		"open": "Monday to Saturday 9AM to 8PM. Sunday 11AM to 8PM.",
+		"status": "Online to Buy and Sell.",
+		"manufacturer": "Crypto Club Inc.",
+		"atmId": "o2op56kh552lp-3332-4ef2-bd71-al77pj4gr23mn67"
+	}
+]

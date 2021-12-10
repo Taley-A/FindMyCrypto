@@ -1,0 +1,14 @@
+[
+	{
+		"clientEmail": "itachi.uchiha@gmail.com",
+		"review": "Smooth transaction and lightning fast machine. Great experience!",
+		"reviewId": "1",
+		"atmId": "88a33c23-3332-4ef2-bd71-be7a6430485f"
+	},
+	{
+		"clientEmail": "naruto.uzumaki@gmail.com",
+		"review": "Easy to operate and I can quickly withdraw cash close to my home!",
+		"reviewId": "2",
+		"atmId": "14lo23kj-3332-4ef2-bd71-ch45ui87dg12kk0"
+	}
+]

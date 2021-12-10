@@ -1,0 +1,41 @@
+[
+	{
+		"firstName": "Itachi",
+		"lastName": "Uchiha",
+		"email": "itachi.uchiha@gmail.com",
+		"password": "1234",
+		"btcWallet": "1z3x45f6c7f8g9d8f7d8szfa872sas",
+		"type": "visitor",
+		"reviews": ["1"]
+	},
+	{
+		"firstName": "Naruto",
+		"lastName": "Uzumaki",
+		"email": "naruto.uzumaki@gmail.com",
+		"password": "1234",
+		"btcWallet": "9s834s5d5a43349d8s8gh8ty54ty6",
+		"type": "visitor",
+		"reviews": ["2"]
+	},
+	{
+		"firstName": "Sasuke",
+		"lastName": "Uchiha",
+		"email": "sasuke.uchiha@gmail.com",
+		"password": "1234",
+		"verified": true,
+		"atmId": [
+			"88a33c23-3332-4ef2-bd71-be7a6430485f",
+			"g6ty33kv61-3332-4ef2-bd71-mb97vg45dg14ad88"
+		],
+		"type": "operator"
+	},
+	{
+		"firstName": "Kakashi",
+		"lastName": "Hatake",
+		"email": "kakashi.hatake@gmail.com",
+		"password": "1234",
+		"verified": true,
+		"atmId": ["14lo23kj-3332-4ef2-bd71-ch45ui87dg12kk0"],
+		"type": "operator"
+	}
+]
