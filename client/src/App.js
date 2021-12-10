@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import styled from "styled-components";
+import DropDown from "./components/DropDown";
 
 import GlobalStyles from "./components/GlobalStyles";
 import Header from "./components/Header";

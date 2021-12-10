@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useAuth0 } from "@auth0/auth0-react";
 
-const LogoutButton = () => {
+const LogOutButton = () => {
 	const { logout } = useAuth0();
 
 	return (
@@ -12,7 +12,7 @@ const LogoutButton = () => {
 	);
 };
 
-export default LogoutButton;
+export default LogOutButton;
 
 const Button = styled.button`
 	background-color: #01bf71;

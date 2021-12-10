@@ -112,6 +112,7 @@ const ScreenFit = styled.div`
 `;
 
 const Menu = styled.ul`
+	font-size: 1.5rem;
 	display: flex;
 	align-items: center;
 	list-style: none;
