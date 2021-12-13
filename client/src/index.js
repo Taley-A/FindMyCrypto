@@ -4,6 +4,8 @@ import App from "./App";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { UserProvider } from "./components/UserContext";
 
+console.log(process.env.REACT_APP_GOOGLE_API_KEY);
+
 ReactDOM.render(
 	<React.StrictMode>
 		<Auth0Provider

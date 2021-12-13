@@ -71,6 +71,7 @@ const addLocation = async (req, res) => {
 	const {
 		name,
 		address,
+		pinLocation,
 		type,
 		cryptocurrncies,
 		kyc,
@@ -83,6 +84,7 @@ const addLocation = async (req, res) => {
 	if (
 		!name ||
 		!address ||
+		!pinLocation ||
 		!type ||
 		!cryptocurrncies ||
 		!kyc ||
@@ -112,7 +114,7 @@ const addLocation = async (req, res) => {
 		const query = { email: ownerEmail };
 
 		const newValues = {
-			$set: { atmId: id },
+			$push: { atmId: id },
 		};
 
 		await db.collection("users").updateOne(query, newValues);
@@ -134,7 +136,7 @@ const addLocation = async (req, res) => {
 const deleteLocation = async (req, res) => {
 	const client = new MongoClient(MONGO_URI, options);
 
-	const { id } = req.params;
+	const { id, email } = req.params;
 
 	// connect to the client
 	await client.connect();
@@ -148,15 +150,13 @@ const deleteLocation = async (req, res) => {
 		const result = await db.collection("location").deleteOne({ atmId: id });
 		console.log(result);
 
-		// WE NEED TO UPDATE THE OWNERS ARRAY OF ATMS -----------------------------------IMPORTANT DONT SKIP
+		const query = { email };
 
-		const query = { email: ownerEmail };
-
-		const newValues = {
-			$set: { atmId: id },
+		const removeValue = {
+			$pull: { atmId: id },
 		};
 
-		await db.collection("users").updateOne(query, newValues);
+		await db.collection("users").updateOne(query, removeValue);
 
 		res.status(200).json({
 			status: 200,
@@ -223,65 +223,57 @@ const getReviewById = async (req, res) => {
 
 // Allow visitors to add a review to the ATM's. ----------------------------------------------------------------------
 
-// 1. we have to get the atmId, then allow the client to leave a review.
-// 2. The review has :atmId,review,reviewId,clientEmail
-// 3. Update the client's reviews array.
+const addReview = async (req, res) => {
+	const client = new MongoClient(MONGO_URI, options);
 
-// const addReview = async (req, res) => {
-//   const client = new MongoClient(MONGO_URI, options);
+	const { atm_Id } = req.params;
 
-// 	const {id} = req.params
-//   const { review } = req.body;
+	const { review, firstName, email } = req.body; //email is going to be given through POST
 
-//   if (!review) {
-//     res.status(400).json({
-//       status: 400,
-//       message: "Missing information, please fill input fields.",
-//     });
+	if (!review) {
+		res.status(400).json({
+			status: 400,
+			message: "Missing information, please fill input fields.",
+		});
 
-//   try {
-//     //generate id
-//     const id = uuidv4();
+		try {
+			//generate id
+			const id = uuidv4();
 
-//     // connect to the client
-//     await client.connect();
+			// connect to the client
+			await client.connect();
 
-//     // connect to the database (the one created in Mongo)
-//     const db = client.db("FindMyCrypto");
-//     console.log("connected!");
+			// connect to the database (the one created in Mongo)
+			const db = client.db("FindMyCrypto");
+			console.log("connected!");
 
-//     await db.collection("reviews").insertOne({ id, review: review });
+			await db
+				.collection("reviews")
+				.insertOne({ reviewId: id, review, atmId: atm_Id, firstName });
 
-//     const query = { atmId: id };
-//     // console.log(query);
-//     const newValues = {
-//       $set: { review: review}
-//     };
+			const query = { email };
+			// console.log(query);
+			const newValues = {
+				$push: { reviews: id },
+			};
 
-//     await db.collection("users").updateOne(query, newValues);
+			await db.collection("users").updateOne(query, newValues);
 
-//     const query = { atmId: id };
-//     // console.log(query);
-//     const newValues = {
-//       $set: { review: review}
-//     };
+			res
+				.status(200)
+				.json({ status: 200, message: "Success", data: { id, ...req.body } });
+		} catch (err) {
+			console.log(err);
+			res
+				.status(500)
+				.json({ status: 500, data: err, message: "Internal Server Error" });
+		}
 
-//     await db.collection("users").updateOne(query, newValues);
-
-//     res
-//       .status(200)
-//       .json({ status: 200, message: "Success", data: { id, ...req.body } });
-//   } catch (err) {
-//     console.log(err);
-//     res
-//       .status(500)
-//       .json({ status: 500, data: err, message: "Internal Server Error" });
-//   }
-
-//   // close the connection to the database server
-//   client.close();
-//   console.log("disconnected!");
-// };
+		// close the connection to the database server
+		client.close();
+		console.log("disconnected!");
+	}
+};
 
 // Login validation done here. ----------------------------------------------------------------------
 const handleLogin = async (req, res) => {
@@ -303,7 +295,6 @@ const handleLogin = async (req, res) => {
 		} else {
 			return res.status(404).json({
 				status: 404,
-				data: null,
 				message:
 					"User not found, please fill up the following information to continue!",
 			});
@@ -344,13 +335,39 @@ const getAllUsers = async (req, res) => {
 	}
 };
 
+// Get user by ID from MongoDB. ----------------------------------------------------------------------
+
+const getUserById = async (req, res) => {
+	const client = new MongoClient(MONGO_URI, options);
+	const { email } = req.params;
+
+	try {
+		await client.connect();
+
+		const db = client.db("FindMyCrypto");
+
+		const result = await db.collection("users").findOne({ email });
+
+		result
+			? res.status(200).json({ status: 200, data: result })
+			: res.status(404).json({ status: 404, data: "Users not found." });
+	} catch {
+		res.status(500).json({
+			status: 500,
+			message: "Something went wrong, please try again later.",
+		});
+	} finally {
+		client.close();
+	}
+};
+
 // Post new user to MongoDB after sign-up process is successful. ----------------------------------------------------------------------
 const addUser = async (req, res) => {
 	const id = uuidv4();
 
 	const { firstName, lastName, email, type, btcWallet } = req.body;
 
-	if (!firstName || !lastName || !type || btcWallet) {
+	if (!firstName || !lastName || !type || !btcWallet) {
 		res.status(400).json({
 			status: "error",
 			message: "Some info is missing, please fill all fields.",
@@ -361,7 +378,7 @@ const addUser = async (req, res) => {
 
 	try {
 		await client.connect();
-		const db = client.db("GroupProject");
+		const db = client.db("FindMyCrypto");
 
 		let newUser = await db.collection("users").insertOne({ ...req.body, id });
 
@@ -385,8 +402,10 @@ module.exports = {
 	deleteLocation,
 	getAllReviews,
 	getReviewById,
+	addReview,
 	handleLogin,
 	getAllUsers,
+	getUserById,
 	addUser,
 };
 ////////////////////////////////////////////////////////////////////////////////////

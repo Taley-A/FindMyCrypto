@@ -14,6 +14,8 @@ const {
 	getAllReviews,
 	getReviewById,
 	getAllUsers,
+	addReview,
+	getUserById,
 } = require("./handlers");
 
 const PORT = 8000;
@@ -33,9 +35,7 @@ app.get("/api/locations/:id", getLocationById);
 app.post("/api/newLocations", addLocation);
 
 //Delete location of an ATM.
-app.delete("/api/locations/:id", deleteLocation);
-
-//Update location information.
+app.delete("/api/locations/:id/:email", deleteLocation);
 
 // Get all Reviews.
 app.get("/api/reviews", getAllReviews);
@@ -43,11 +43,17 @@ app.get("/api/reviews", getAllReviews);
 // Get Review by id.
 app.get("/api/reviews/:id", getReviewById);
 
+// Add new review to a location.
+app.post("/api/reviews/:atm_Id", addReview);
+
 // Get all Users.
 app.get("/api/users", getAllUsers);
 
 // Login Validation to see if client already exists in MongoDB.
 app.get("/api/handleLogin/:email", handleLogin);
+
+// Get user by their unique email.
+app.get("/api/users/:email", getUserById);
 
 // Add new user to MongoDB after sign-up process is successful.
 app.post("/api/sign-up", addUser);

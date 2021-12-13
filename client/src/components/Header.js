@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link as LinkRouter } from "react-router-dom";
 import { Link as LinkScroll } from "react-scroll";
@@ -10,21 +10,21 @@ import LogOutButton from "./LogOutButton";
 
 import { FaBars } from "react-icons/fa";
 
-const Header = () => {
-	const { isAuthenticated } = useContext(UserContext);
-	console.log(isAuthenticated);
+const Header = ({ toggle }) => {
+	const { isAuthenticated, currentUser, isLoading } = useContext(UserContext);
+	console.log(currentUser);
 
-	{
-		isAuthenticated ? (
-			<>
-				<LogOutButton />
-			</>
-		) : (
-			<>
-				<LogInButton />
-			</>
-		);
-	}
+	const [updatedUser, setUpdatedUser] = useState(null);
+	console.log(updatedUser);
+
+	const savedUser = JSON.parse(sessionStorage.getItem("currentUser"));
+	console.log(savedUser);
+
+	useEffect(() => {
+		if (savedUser !== null) {
+			setUpdatedUser(savedUser);
+		}
+	}, []);
 
 	return (
 		<Container>
@@ -32,7 +32,7 @@ const Header = () => {
 				<Logo src={LogoFMC} />
 				<Name>FindMyCrypto</Name>
 			</Box>
-			<ScreenFit>
+			<ScreenFit onClick={toggle}>
 				<FaBars />
 			</ScreenFit>
 			<Menu>
@@ -46,11 +46,21 @@ const Header = () => {
 					<MapLink to="map">Map</MapLink>
 				</Item>
 				<Item>
-					<SignupLink to="signup">Sign Up</SignupLink>
+					{isAuthenticated || updatedUser ? (
+						<>
+							{" "}
+							<ProfileLink to="profile">Profile</ProfileLink>{" "}
+						</>
+					) : (
+						<>
+							{" "}
+							<SignupLink to="signup">Sign Up</SignupLink>{" "}
+						</>
+					)}
 				</Item>
 			</Menu>
 			<ButtonBox>
-				{isAuthenticated ? (
+				{isAuthenticated || updatedUser ? (
 					<>
 						<LogOutButton />
 					</>
@@ -65,13 +75,15 @@ const Header = () => {
 };
 
 const Container = styled.div`
+	top: 0;
+	position: sticky;
 	background-color: black;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	padding: 32px;
-	height: 136px;
-	/* margin-top: -80px; */
+	height: 100px;
+	z-index: 1000;
 
 	@media screen and (max-width: 960px) {
 		transition: 0.8s all ease;
@@ -112,12 +124,12 @@ const ScreenFit = styled.div`
 `;
 
 const Menu = styled.ul`
-	font-size: 1.5rem;
+	font-size: 1.8rem;
 	display: flex;
 	align-items: center;
 	list-style: none;
 	text-align: center;
-
+	margin-right: 7rem;
 	@media screen and (max-width: 768px) {
 		display: none;
 	}
@@ -128,6 +140,20 @@ const Item = styled.div`
 `;
 
 const AboutLink = styled(LinkScroll)`
+	color: white;
+	display: flex;
+	text-decoration: none;
+	align-items: center;
+	padding: 0 1rem;
+	height: 100%;
+	cursor: pointer;
+
+	&.active {
+		border-bottom: 3px solid #01bf71;
+	}
+`;
+
+const ProfileLink = styled(LinkScroll)`
 	color: white;
 	display: flex;
 	text-decoration: none;

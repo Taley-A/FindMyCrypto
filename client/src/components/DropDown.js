@@ -7,24 +7,32 @@ import LogInButton from "./LogInButton";
 import LogOutButton from "./LogOutButton";
 import { UserContext } from "./UserContext";
 
-const DropDown = () => {
+const DropDown = ({ isOpen, toggle }) => {
 	const { isAuthenticated } = useContext(UserContext);
 	console.log(isAuthenticated);
 
 	return (
-		<Container>
-			<Box>
+		<Container isOpen={isOpen} onClick={toggle}>
+			<Box onClick={toggle}>
 				<X />
 			</Box>
 			<MenuWrapper>
 				<Menu>
-					<MenuLink to="about">About</MenuLink>
+					<MenuLink to="about" onClick={toggle}>
+						About
+					</MenuLink>
 
-					<MenuLink to="services">Services</MenuLink>
+					<MenuLink to="services" onClick={toggle}>
+						Services
+					</MenuLink>
 
-					<MenuLink to="Map">Map</MenuLink>
+					<MenuLink to="Map" onClick={toggle}>
+						Map
+					</MenuLink>
 
-					<MenuLink to="signupt">Sign Up</MenuLink>
+					<MenuLink to="signupt" onClick={toggle}>
+						Sign Up
+					</MenuLink>
 				</Menu>
 				<ButtonBox>
 					{isAuthenticated ? (
@@ -42,9 +50,6 @@ const DropDown = () => {
 	);
 };
 
-// opacity: ${({ isOpen }) => (isOpen ? "100%" : "0")};
-// top: ${({ isOpen }) => (isOpen ? "0" : "-100%")};
-
 export default DropDown;
 
 const Container = styled.aside`
@@ -58,6 +63,8 @@ const Container = styled.aside`
 	height: 100%;
 	background: #0c0c0c;
 	transition: 0.4s ease-in-out;
+	opacity: ${({ isOpen }) => (isOpen ? "100%" : "0")};
+	top: ${({ isOpen }) => (isOpen ? "0" : "-100%")};
 `;
 
 const X = styled(FaTimes)`
