@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import Coin from "../Coin";
+import Coin from "./Coin";
 import digitalCurrency from "../../images/digitalCurrency.png";
 
 //
@@ -17,7 +17,6 @@ const About = () => {
 				"https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false"
 			)
 			.then((res) => {
-				console.log(res.data);
 				setCoins(res.data);
 			})
 			.catch((err) => console.log(err));

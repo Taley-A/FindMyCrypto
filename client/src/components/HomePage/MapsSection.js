@@ -2,7 +2,7 @@ import React from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
 
-import location from "../images/Location.png";
+import location from "../../images/Location.png";
 import { FcSearch } from "react-icons/fc";
 import { FiArrowRight } from "react-icons/fi";
 import { SiBitcoinsv } from "react-icons/si";

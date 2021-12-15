@@ -6,7 +6,6 @@ export const UserContext = createContext();
 export const UserProvider = ({ children }) => {
 	const [currentUser, setCurrentUser] = useState(null);
 	const { user, isAuthenticated, isLoading } = useAuth0();
-	console.log(isAuthenticated);
 
 	const savedUser = JSON.parse(sessionStorage.getItem("currentUser"));
 
@@ -21,7 +20,6 @@ export const UserProvider = ({ children }) => {
 			fetch(`/api/users/${savedUser.email}`)
 				.then((res) => res.json())
 				.then((data) => {
-					console.log(data);
 					setCurrentUser(data.data);
 				});
 		}

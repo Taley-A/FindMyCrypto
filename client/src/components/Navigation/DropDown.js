@@ -1,15 +1,13 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { Link as LinkScroll } from "react-scroll";
-
 import { FaTimes } from "react-icons/fa";
 import LogInButton from "./LogInButton";
 import LogOutButton from "./LogOutButton";
-import { UserContext } from "./UserContext";
+import { UserContext } from "../UserContext";
 
 const DropDown = ({ isOpen, toggle }) => {
-	const { isAuthenticated } = useContext(UserContext);
-	console.log(isAuthenticated);
+	const { isAuthenticated, currentUser } = useContext(UserContext);
 
 	return (
 		<Container isOpen={isOpen} onClick={toggle}>
@@ -18,24 +16,75 @@ const DropDown = ({ isOpen, toggle }) => {
 			</Box>
 			<MenuWrapper>
 				<Menu>
-					<MenuLink to="about" onClick={toggle}>
+					<MenuLink
+						to="about"
+						smooth={true}
+						duartion={500}
+						spy={true}
+						exact="true"
+						activeClass="active"
+						offset={-100}
+						onClick={toggle}
+					>
 						About
 					</MenuLink>
 
-					<MenuLink to="services" onClick={toggle}>
+					<MenuLink
+						to="services"
+						smooth={true}
+						duartion={500}
+						spy={true}
+						exact="true"
+						activeClass="active"
+						offset={-100}
+						onClick={toggle}
+					>
 						Services
 					</MenuLink>
 
-					<MenuLink to="Map" onClick={toggle}>
+					<MenuLink
+						to="map"
+						smooth={true}
+						duartion={500}
+						spy={true}
+						exact="true"
+						activeClass="active"
+						offset={-100}
+						onClick={toggle}
+					>
 						Map
 					</MenuLink>
 
-					<MenuLink to="signupt" onClick={toggle}>
-						Sign Up
-					</MenuLink>
+					{isAuthenticated || currentUser ? (
+						<MenuLink
+							to="profile"
+							smooth={true}
+							duartion={500}
+							spy={true}
+							exact="true"
+							activeClass="active"
+							offset={-100}
+							onClick={toggle}
+						>
+							Profile
+						</MenuLink>
+					) : (
+						<MenuLink
+							to="signup"
+							smooth={true}
+							duartion={500}
+							spy={true}
+							exact="true"
+							activeClass="active"
+							offset={-100}
+							onClick={toggle}
+						>
+							Sign Up
+						</MenuLink>
+					)}
 				</Menu>
 				<ButtonBox>
-					{isAuthenticated ? (
+					{isAuthenticated && currentUser ? (
 						<>
 							<LogOutButton />
 						</>

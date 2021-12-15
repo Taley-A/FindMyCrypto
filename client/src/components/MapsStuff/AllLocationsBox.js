@@ -1,14 +1,7 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { UserContext } from "./UserContext";
+import { UserContext } from "../UserContext";
 import Swal from "sweetalert2";
-import {
-	GoogleMap,
-	useLoadScript,
-	Marker,
-	InfoWindow,
-} from "@react-google-maps/api";
-import Geocode from "react-geocode";
 
 const AllLocationBox = ({ location, setCenterPoint }) => {
 	const { currentUser } = useContext(UserContext);

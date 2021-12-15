@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Geocode from "react-geocode";
 
 import { useHistory } from "react-router";
-import { UserContext } from "./UserContext";
+import { UserContext } from "../UserContext";
 
 import { FcGlobe } from "react-icons/fc";
 import Swal from "sweetalert2";

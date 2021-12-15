@@ -23,6 +23,8 @@ const Container = styled.div`
 const Name = styled.div`
 	margin-top: 10px;
 	text-decoration: underline;
+	font-size: 16px;
+	font-family: "Franklin Gothic Medium", sans-serif;
 `;
 
 const ReviewMessage = styled.div``;

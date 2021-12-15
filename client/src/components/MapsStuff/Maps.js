@@ -7,12 +7,10 @@ import {
 	Marker,
 } from "@react-google-maps/api";
 
-import MapsStyles from "../MapsStyles";
+import MapsStyles from "../../MapsStyles";
 
 const Maps = ({ centerPoint }) => {
 	const mapRef = useRef();
-
-	console.log(centerPoint);
 
 	const handleMapLoad = useCallback((map) => {
 		mapRef.current = map;
@@ -42,7 +40,6 @@ const Maps = ({ centerPoint }) => {
 			.then((res) => res.json())
 			.then((res) => {
 				setLocations(res.data);
-				console.log(res.data);
 			});
 	}, []);
 
@@ -53,8 +50,6 @@ const Maps = ({ centerPoint }) => {
 			})
 		);
 	}, [locations]);
-
-	console.log(markers);
 
 	const [selected, setSelected] = useState(null);
 

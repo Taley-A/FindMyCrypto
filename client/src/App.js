@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import styled from "styled-components";
 
-import DropDown from "./components/DropDown";
+import DropDown from "./components/Navigation/DropDown";
 import GlobalStyles from "./components/GlobalStyles";
-import Header from "./components/Header";
-import Homepage from "./components/Homepage";
-import SignUpForm from "./components/SignUpForm";
-import Maps from "./components/Maps";
-import NewLocationForm from "./components/NewLocationForm";
-import AllLocations from "./components/AllLocations";
+import Header from "./components/Navigation/Header";
+import Homepage from "./components/HomePage/Homepage";
+import SignUpForm from "./components/SignUp/SignUpForm";
+import Maps from "./components/MapsStuff/Maps";
+import NewLocationForm from "./components/HomePage/NewLocationForm";
+import AllLocations from "./components/MapsStuff/AllLocations";
 
 const App = () => {
 	const [isOpen, setIsOpen] = useState(false);

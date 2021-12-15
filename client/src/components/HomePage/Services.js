@@ -1,41 +1,60 @@
 import React from "react";
+
 import styled from "styled-components";
 
-import SignUpButton from "./SignUpButton";
+import visitor from "../../images/Visitor.png";
+import operator from "../../images/Operator.png";
+import { FiUsers } from "react-icons/fi";
 
-import JoinUs from "../images/JoinUs.png";
-import PiggyBank from "../images/PiggyBank.png";
-
-const MapsSection = () => {
+const Services = () => {
 	return (
 		<>
 			<Container>
 				<Wrapper>
+					<Title>
+						Services for everyone
+						<Users />
+					</Title>
+
 					<Row>
 						<Column1>
 							<TextWrap>
-								<Top>join us at FindMyCrypto</Top>
+								<Top>Operator</Top>
 								<Heading>
-									Take advantage of our special features by signing up!
+									We help you display your crypto ATM's to all our visitors.
 								</Heading>
 								<Subtitle>
-									Whether you are a visitor or an operator, we have a bunch of
-									features that will make your crypto interactions easy and
-									seamless.
+									Provide all the information about your ATM and allow users to
+									interact with them by leaving reviews! Visitors can easily
+									find them through our website and this allows you to have more
+									visibity and drive traffic towards your machines.
 								</Subtitle>
 								<ImageContainer>
-									<Image src={JoinUs} />
+									<Image src={operator} />
 								</ImageContainer>
 							</TextWrap>
 						</Column1>
 						<Column2>
-							<ImageContainer>
-								<Image2 src={PiggyBank} />
-							</ImageContainer>
-							<Text>Click below to get started!</Text>
-							<Box>
-								<SignUpButton />
-							</Box>
+							<TextWrap>
+								<Top>Visitor</Top>
+								<Heading>
+									Let us help you find a Cryptocurrency ATM near you!
+								</Heading>
+								<Subtitle>
+									Conveniently locate crypto ATM's through our website and have
+									the ability to leave reviews of the machines to help the
+									crypto community.
+								</Subtitle>
+								<Subtitle>
+									We also allow you to keep your digital wallet codes in your
+									profile so you can easily access them during a transaction.
+									Safely, comfortably and quickly buy or sell crypto through
+									these machines!
+								</Subtitle>
+								<ImageContainer>
+									<Image src={visitor} />
+								</ImageContainer>
+							</TextWrap>
 						</Column2>
 					</Row>
 				</Wrapper>
@@ -44,9 +63,10 @@ const MapsSection = () => {
 	);
 };
 
-export default MapsSection;
+export default Services;
 
 const Container = styled.div`
+	color: #022121;
 	background: white;
 
 	@media screen and (max-width: 768px) {
@@ -57,7 +77,7 @@ const Container = styled.div`
 const Wrapper = styled.div`
 	display: grid;
 	z-index: 1;
-	height: 100vh;
+	height: 1200px;
 	width: 100vw;
 	max-width: 1100px;
 	margin-right: auto;
@@ -68,11 +88,9 @@ const Wrapper = styled.div`
 `;
 
 const Row = styled.div`
-	margin-top: 48px;
 	display: grid;
 	grid-auto-columns: minmax(auto, 1fr);
 	align-items: center;
-	height: 100vh;
 
 	@media screen and (max-width: 768px) {
 		grid-template-areas: "col1 col2";
@@ -81,11 +99,11 @@ const Row = styled.div`
 
 const Column1 = styled.div`
 	position: relative;
-	bottom: 750px;
 	color: white;
 	width: 200px;
-	margin-bottom: 15px;
+	margin-bottom: 16px;
 	grid-area: col1;
+	bottom: 950px;
 `;
 
 const Column2 = styled.div`
@@ -132,7 +150,6 @@ const Subtitle = styled.p`
 	font-size: 18px;
 	line-height: 24px;
 	color: #022121;
-	display: flex;
 `;
 
 const ImageContainer = styled.div`
@@ -142,25 +159,18 @@ const ImageContainer = styled.div`
 
 const Image = styled.img`
 	border-radius: 20px;
-	width: 600px;
-	height: 400px;
-`;
-
-const Image2 = styled.img`
-	border-radius: 20px;
 	width: 500px;
-	height: 400px;
 `;
 
-const Box = styled.div`
-	display: flex;
-	justify-content: center;
-`;
-
-const Text = styled.h2`
+const Title = styled.h1`
 	text-align: center;
-	color: #022121;
-	font-size: 48px;
-	margin-top: 100px;
-	margin-bottom: 100px;
+	padding-top: 30px;
+	font-size: 3rem;
+`;
+
+const Users = styled(FiUsers)`
+	margin-left: 40px;
+	color: #01bf71;
+	height: 70px;
+	width: 70px;
 `;

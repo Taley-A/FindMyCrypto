@@ -4,8 +4,8 @@ import { Link as LinkRouter } from "react-router-dom";
 import { Link as LinkScroll } from "react-scroll";
 import { animateScroll as scroll } from "react-scroll";
 
-import LogoFMC from "../images/Logo.PNG";
-import { UserContext } from "./UserContext";
+import LogoFMC from "../../images/Logo.PNG";
+import { UserContext } from "../UserContext";
 import LogInButton from "./LogInButton";
 import LogOutButton from "./LogOutButton";
 
@@ -13,13 +13,10 @@ import { FaBars } from "react-icons/fa";
 
 const Header = ({ toggle }) => {
 	const { isAuthenticated, currentUser } = useContext(UserContext);
-	console.log(currentUser);
 
 	const [updatedUser, setUpdatedUser] = useState(null);
-	console.log(updatedUser);
 
 	const savedUser = JSON.parse(sessionStorage.getItem("currentUser"));
-	console.log(savedUser);
 
 	useEffect(() => {
 		if (savedUser !== null) {
@@ -115,7 +112,7 @@ const Header = ({ toggle }) => {
 				</Item>
 			</Menu>
 			<ButtonBox>
-				{isAuthenticated || updatedUser ? (
+				{isAuthenticated || currentUser ? (
 					<>
 						<LogOutButton />
 					</>

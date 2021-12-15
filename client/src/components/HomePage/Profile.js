@@ -5,10 +5,11 @@ import styled from "styled-components";
 import LocationBox from "./LocationBox";
 import ReviewsBox from "./ReviewsBox";
 
-import message from "../images/Message.png";
-import profilePic from "../images/Profile.png";
+import message from "../../images/Message.png";
+import profilePic from "../../images/Profile.png";
 
 import { FiArrowDown } from "react-icons/fi";
+import { FcAdvertising } from "react-icons/fc";
 
 const Profile = ({ currentUser }) => {
 	let history = useHistory();
@@ -36,8 +37,6 @@ const Profile = ({ currentUser }) => {
 				setLocations(res.data);
 			});
 	}, []);
-
-	console.log(locations);
 
 	const handleNewLocationCLick = () => {
 		history.push("/new-location");
@@ -67,7 +66,9 @@ const Profile = ({ currentUser }) => {
 						{showVisitorInfo ? (
 							<TextWrap>
 								<Top>Your Reviews</Top>
-								<Heading>Here is everything you had to say </Heading>
+								<Heading>
+									Here is everything you had to say <Speaker />{" "}
+								</Heading>
 								<Subtitle2>
 									{reviews.map((review) => {
 										return <ReviewsBox key={review._id} review={review} />;
@@ -221,6 +222,10 @@ const Image2 = styled.img`
 const ArrowDown = styled(FiArrowDown)`
 	margin-top: 10px;
 	margin-left: 30px;
+`;
+
+const Speaker = styled(FcAdvertising)`
+	margin-top: 16px;
 `;
 
 const LocationFormButton = styled.button`

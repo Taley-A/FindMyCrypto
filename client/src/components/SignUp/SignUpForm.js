@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import styled from "styled-components";
 
 import { useHistory } from "react-router";
-import { UserContext } from "./UserContext";
+import { UserContext } from "../UserContext";
 
 import { FaUserAlt } from "react-icons/fa";
 import { FcApproval } from "react-icons/fc";
