@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import AllLocationBox from "./AllLocationsBox";
 
-const AllLocations = () => {
+const AllLocations = ({ setCenterPoint }) => {
 	const [locations, setLocations] = useState([]);
 
 	useEffect(() => {
@@ -18,7 +18,14 @@ const AllLocations = () => {
 		<>
 			<Container>
 				{locations.map((location) => {
-					return <AllLocationBox location={location} />;
+					console.log(location);
+					return (
+						<AllLocationBox
+							key={location.atmId}
+							location={location}
+							setCenterPoint={setCenterPoint}
+						/>
+					);
 				})}
 			</Container>
 		</>

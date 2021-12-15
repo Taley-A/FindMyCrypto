@@ -151,7 +151,7 @@ const deleteLocation = async (req, res) => {
 
 	try {
 		//insert object to test
-		const result = await db.collection("location").deleteOne({ atmId: id });
+		const result = await db.collection("locations").deleteOne({ atmId: id });
 		console.log(result);
 
 		const query = { email };
@@ -210,7 +210,7 @@ const getReviewById = async (req, res) => {
 		await client.connect();
 		const db = client.db("FindMyCrypto");
 
-		const result = await db.collection("reviews").findOne({ email });
+		const result = await db.collection("reviews").find({ email }).toArray();
 
 		result
 			? res.status(200).json({ status: 200, data: result })
@@ -232,51 +232,38 @@ const addReview = async (req, res) => {
 
 	const { atm_Id } = req.params;
 
-	const { review, firstName, email } = req.body; //email is going to be given through POST
+	const { review, email } = req.body; //email is going to be given through POST
 
-	if (!review) {
-		res.status(400).json({
-			status: 400,
-			message: "Missing information, please fill input fields.",
-		});
+	try {
+		//generate id
+		// connect to the client
+		await client.connect();
 
-		try {
-			//generate id
-			const id = uuidv4();
+		// connect to the database (the one created in Mongo)
+		const db = client.db("FindMyCrypto");
+		console.log("connected!");
 
-			// connect to the client
-			await client.connect();
+		const result = await db
+			.collection("reviews")
+			.insertOne({ review, atmId: atm_Id, email });
 
-			// connect to the database (the one created in Mongo)
-			const db = client.db("FindMyCrypto");
-			console.log("connected!");
-
-			await db
-				.collection("reviews")
-				.insertOne({ reviewId: id, review, atmId: atm_Id, firstName });
-
-			const query = { email };
-			// console.log(query);
-			const newValues = {
-				$push: { reviews: id },
-			};
-
-			await db.collection("users").updateOne(query, newValues);
-
-			res
-				.status(200)
-				.json({ status: 200, message: "Success", data: { id, ...req.body } });
-		} catch (err) {
-			console.log(err);
-			res
-				.status(500)
-				.json({ status: 500, data: err, message: "Internal Server Error" });
-		}
-
-		// close the connection to the database server
-		client.close();
-		console.log("disconnected!");
+		result
+			? res.status(200).json({
+					status: 200,
+					message: "Success",
+					data: { atm_Id, ...req.body },
+			  })
+			: res.status(404).json({ status: 404, data: "Review not found" });
+	} catch (err) {
+		console.log(err);
+		res
+			.status(500)
+			.json({ status: 500, data: err, message: "Internal Server Error" });
 	}
+
+	// close the connection to the database server
+	client.close();
+	console.log("disconnected!");
 };
 
 // Login validation done here. ----------------------------------------------------------------------

@@ -349,6 +349,4 @@ const BiggerBox = styled.div`
 	padding: 80px;
 `;
 
-const Approval = styled(FcGlobe)``;
-
 export default NewLocationForm;

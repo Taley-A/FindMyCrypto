@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router";
 
@@ -6,11 +6,10 @@ const LocationBox = ({ location, currentUser }) => {
 	let history = useHistory();
 	console.log(currentUser);
 
-	// how do I add the atmID ???
-
 	const handleDelete = (ev) => {
 		ev.preventDefault();
-		fetch(`/api/locations/${location.id}/${currentUser.email}`, {
+		console.log(location);
+		fetch(`/api/locations/${location.atmId}/${currentUser.email}`, {
 			method: "DELETE",
 			headers: {
 				"Content-Type": "application/json",

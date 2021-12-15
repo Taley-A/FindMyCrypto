@@ -1,10 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
-import styled from "styled-components";
-import { Link as LinkScroll } from "react-scroll";
-import { animateScroll as scroll } from "react-scroll";
+import React, { useContext, useEffect } from "react";
 import { useHistory } from "react-router";
 import { UserContext } from "./UserContext";
-import About from "./About";
+import About from "./HomePage/About";
 import Services from "./Services";
 import MapsSection from "./MapsSection";
 import Profile from "./Profile";
@@ -12,8 +9,7 @@ import SignUpSection from "./SignUpSection";
 import Swal from "sweetalert2";
 
 const Homepage = () => {
-	const { isAuthenticated, setCurrentUser, currentUser } =
-		useContext(UserContext);
+	const { isAuthenticated, currentUser } = useContext(UserContext);
 
 	const history = useHistory();
 

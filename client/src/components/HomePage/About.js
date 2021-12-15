@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import Coin from "./Coin";
-import digitalCurrency from "../images/digitalCurrency.png";
+import Coin from "../Coin";
+import digitalCurrency from "../../images/digitalCurrency.png";
 
 //
 

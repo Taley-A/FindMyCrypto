@@ -5,8 +5,8 @@ const ReviewsBox = ({ review }) => {
 	return (
 		<>
 			<Container>
-				<ReviewMessage>{review.review}</ReviewMessage>
-				<Name>ATM ID: {review.atmId}</Name>
+				<ReviewMessage> •{review.review}</ReviewMessage>
+				<Name> •ATM ID: {review.atmId}</Name>
 			</Container>
 		</>
 	);
@@ -22,6 +22,7 @@ const Container = styled.div`
 
 const Name = styled.div`
 	margin-top: 10px;
+	text-decoration: underline;
 `;
 
 const ReviewMessage = styled.div``;

@@ -7,7 +7,6 @@ import ReviewsBox from "./ReviewsBox";
 
 import message from "../images/Message.png";
 import profilePic from "../images/Profile.png";
-import machine from "../images/Machine.png";
 
 import { FiArrowDown } from "react-icons/fi";
 
@@ -26,7 +25,7 @@ const Profile = ({ currentUser }) => {
 		fetch(`/api/reviews/${currentUser.email}`)
 			.then((res) => res.json())
 			.then((res) => {
-				setReviews([res.data]);
+				setReviews(res.data);
 			});
 	}, []);
 
@@ -69,11 +68,11 @@ const Profile = ({ currentUser }) => {
 							<TextWrap>
 								<Top>Your Reviews</Top>
 								<Heading>Here is everything you had to say </Heading>
-								<Subtitle>
+								<Subtitle2>
 									{reviews.map((review) => {
-										return <ReviewsBox review={review} />;
+										return <ReviewsBox key={review._id} review={review} />;
 									})}
-								</Subtitle>
+								</Subtitle2>
 								<ImageContainer>
 									<Image2 src={message} />
 								</ImageContainer>
@@ -82,18 +81,19 @@ const Profile = ({ currentUser }) => {
 							<TextWrap2>
 								<Top>My Locations</Top>
 								<Heading> All the ATM's you operate. </Heading>
-								<Subtitle2>
+								<Subtitle3>
 									{locations.map((location) => {
 										if (location.ownerEmail === currentUser.email) {
 											return (
 												<LocationBox
+													key={location.atmId}
 													location={location}
 													currentUser={currentUser}
 												/>
 											);
 										}
 									})}
-								</Subtitle2>
+								</Subtitle3>
 								<LocationFormButton onClick={handleNewLocationCLick}>
 									Add a new location
 								</LocationFormButton>
@@ -110,6 +110,7 @@ export default Profile;
 
 const Container = styled.div`
 	background: white;
+
 	@media screen and (max-width: 768px) {
 		padding: 100px 0px;
 	}
@@ -125,16 +126,17 @@ const Wrapper = styled.div`
 	margin-left: auto;
 	padding: 0 24px;
 	justify-content: center;
-	align-items: center;
+	align-items: flex-start;
 `;
 
 const Column1 = styled.div`
-	margin-top: 20px;
+	display: flex;
+	margin-top: 64px;
 `;
 
 const Column2 = styled.div`
-	position: relative;
-	top: 170px;
+	display: flex;
+	margin-top: 64px;
 `;
 
 const TextWrap = styled.div`
@@ -152,6 +154,7 @@ const TextWrap2 = styled.div`
 `;
 
 const Top = styled.div`
+	padding-top: 10px;
 	color: #01bf71;
 	font-size: 24px;
 	line-height: 16px;
@@ -174,17 +177,24 @@ const Heading = styled.h1`
 	}
 `;
 
-const Subtitle = styled.p`
+const Subtitle = styled.div`
 	width: 450px;
 	margin-bottom: 20px;
 	font-size: 24px;
 	font-weight: 600;
 	line-height: 24px;
 	color: #022121;
-	display: flex;
+`;
+const Subtitle2 = styled.div`
+	width: 450px;
+	margin-bottom: 20px;
+	font-size: 24px;
+	font-weight: 600;
+	line-height: 24px;
+	color: #022121;
 `;
 
-const Subtitle2 = styled.p`
+const Subtitle3 = styled.div`
 	margin: 10px;
 	font-size: 24px;
 	font-weight: 600;

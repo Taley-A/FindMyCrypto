@@ -12,7 +12,7 @@ import LogOutButton from "./LogOutButton";
 import { FaBars } from "react-icons/fa";
 
 const Header = ({ toggle }) => {
-	const { isAuthenticated, currentUser, isLoading } = useContext(UserContext);
+	const { isAuthenticated, currentUser } = useContext(UserContext);
 	console.log(currentUser);
 
 	const [updatedUser, setUpdatedUser] = useState(null);

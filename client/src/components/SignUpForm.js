@@ -9,7 +9,7 @@ import { FcApproval } from "react-icons/fc";
 import Swal from "sweetalert2";
 
 const SignUpForm = () => {
-	const { currentUser, setCurrentUser, user } = useContext(UserContext);
+	const { currentUser, setCurrentUser } = useContext(UserContext);
 	const history = useHistory();
 
 	// Initial state of state variable inputData.

@@ -18,6 +18,11 @@ const App = () => {
 		setIsOpen(!isOpen);
 	};
 
+	const [centerPoint, setCenterPoint] = useState({
+		lat: 45.460815,
+		lng: -73.65126,
+	});
+
 	return (
 		<BrowserRouter>
 			<GlobalStyles />
@@ -33,8 +38,8 @@ const App = () => {
 					</Route>
 					<Route path="/maps">
 						<MapsContainer>
-							<Maps />
-							<AllLocations />
+							<Maps centerPoint={centerPoint} />
+							<AllLocations setCenterPoint={setCenterPoint} />
 						</MapsContainer>
 					</Route>
 					<Route path="/new-location">

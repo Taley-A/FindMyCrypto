@@ -9,8 +9,10 @@ import {
 
 import MapsStyles from "../MapsStyles";
 
-const Maps = () => {
+const Maps = ({ centerPoint }) => {
 	const mapRef = useRef();
+
+	console.log(centerPoint);
 
 	const handleMapLoad = useCallback((map) => {
 		mapRef.current = map;
@@ -23,17 +25,17 @@ const Maps = () => {
 		libraries,
 	});
 
-	const [centerPoint, setCenterPoint] = useState({
-		lat: 45.460815,
-		lng: -73.65126,
-	});
+	// const [centerPoint, setCenterPoint] = useState({
+	// 	lat: 45.460815,
+	// 	lng: -73.65126,
+	// });
 
 	const options = {
 		styles: MapsStyles,
 	};
 
 	const [locations, setLocations] = useState([]);
-	const [markers, setMarkers] = useState([]);
+	const [markers, setMarkers] = useState(null);
 
 	useEffect(() => {
 		fetch(`/api/locations/`)
@@ -45,12 +47,13 @@ const Maps = () => {
 	}, []);
 
 	useEffect(() => {
-		setMarkers([
+		setMarkers(
 			locations.map((location) => {
 				return location.latLng;
-			}),
-		]);
-	});
+			})
+		);
+	}, [locations]);
+
 	console.log(markers);
 
 	const [selected, setSelected] = useState(null);
@@ -63,10 +66,6 @@ const Maps = () => {
 				lng: event.latLng.lng(),
 			},
 		]);
-		setCenterPoint({
-			lat: event.latLng.lat(),
-			lng: event.latLng.lng(),
-		});
 	}, []);
 
 	return (
@@ -83,25 +82,23 @@ const Maps = () => {
 						center={centerPoint}
 						zoom={12}
 						options={options}
-						onClick={handleMarkerClick}
 					>
-						{markers.map((marker) => {
-							return (
-								<Marker
-									key={`${marker.lat}-${marker.lng}`}
-									position={{ lat: marker.lat, lng: marker.lng }}
-									onClick={() => {
-										setSelected(marker);
-									}}
-									icon={{
-										url: "/bitcoin.svg",
-										scaledSize: new window.google.maps.Size(30, 30),
-										origin: new window.google.maps.Point(0, 0),
-										anchor: new window.google.maps.Point(15, 15),
-									}}
-								/>
-							);
-						})}
+						{markers &&
+							markers.map((marker) => {
+								console.log(marker);
+								return (
+									<Marker
+										key={`${marker.lat}-${marker.lng}`}
+										position={{ lat: marker.lat, lng: marker.lng }}
+										icon={{
+											url: "/bitcoin.svg",
+											scaledSize: new window.google.maps.Size(30, 30),
+											origin: new window.google.maps.Point(0, 0),
+											anchor: new window.google.maps.Point(15, 15),
+										}}
+									/>
+								);
+							})}
 
 						{selected ? (
 							<InfoWindow
