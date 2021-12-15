@@ -18,6 +18,7 @@ Conveniently locate crypto ATM's through our website and have the ability to lea
 We also allow you to keep your digital wallet codes in your profile so you can easily access them during a transaction. Safely, comfortably and quickly buy or sell crypto through these machines!
 
 - OPERATOR
+
 We help you display your crypto ATM's to all our visitors.
 
 Provide all the information about your ATM and allow users to interact with them by leaving reviews! Visitors can easily find them through our website and this allows you to have more visibity and drive traffic towards your machines.
