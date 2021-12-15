@@ -10,7 +10,7 @@ Easily find one of many ATM's around you to exchange some crypto for cash or to 
 
 ### We provide services for everyone!
 
--VISITOR
+- VISITOR
 
 Let us help you find a Cryptocurrency ATM near you!
 Conveniently locate crypto ATM's through our website and have the ability to leave reviews of the machines to help the crypto community.
