@@ -9,7 +9,8 @@
 		"status": "Online to Buy and Sell.",
 		"manufacturer": "Crypto Club Inc.",
 		"atmId": "88a33c23-3332-4ef2-bd71-be7a6430485f",
-		"ownerEmail": "sasuke.uchiha@gmail.com"
+		"ownerEmail": "sasuke.uchiha@gmail.com",
+		"latLng": { "lat": 45.43058, "lng": -73.64819 }
 	},
 	{
 		"name": "Kojax Souflaki Restaurant in Dollard-des-Ormeaux",
@@ -21,7 +22,8 @@
 		"status": "Online to Buy and Sell.",
 		"manufacturer": "Lamassu",
 		"atmId": "14lo23kj-3332-4ef2-bd71-ch45ui87dg12kk0",
-		"ownerEmail": "kakashi.hatake@gmail.com"
+		"ownerEmail": "kakashi.hatake@gmail.com",
+		"latLng": { "lat": 45.48614, "lng": -73.79725 }
 	},
 	{
 		"name": "Provi-Soir",
@@ -33,7 +35,8 @@
 		"status": "Online to Buy and Sell.",
 		"manufacturer": "Crypto Club Inc.",
 		"atmId": "g6ty33kv61-3332-4ef2-bd71-mb97vg45dg14ad88",
-		"ownerEmail": "sasuke.uchiha@gmail.com"
+		"ownerEmail": "sasuke.uchiha@gmail.com",
+		"latLng": { "lat": 45.58832, "lng": -73.63516 }
 	},
 	{
 		"name": "MacKay Convenience Store - Downtown",
@@ -44,6 +47,7 @@
 		"open": "Monday to Saturday 9AM to 8PM. Sunday 11AM to 8PM.",
 		"status": "Online to Buy and Sell.",
 		"manufacturer": "Crypto Club Inc.",
-		"atmId": "o2op56kh552lp-3332-4ef2-bd71-al77pj4gr23mn67"
+		"atmId": "o2op56kh552lp-3332-4ef2-bd71-al77pj4gr23mn67",
+		"latLng": { "lat": 45.4964, "lng": -73.63516 }
 	}
 ]

@@ -35,6 +35,7 @@ const SignUpForm = () => {
 			email: currentUser.email,
 			btcWallet: inputData.btcWallet,
 			type: inputData.type,
+			atmId: [],
 		};
 
 		// Send user information to the back end.
@@ -55,8 +56,8 @@ const SignUpForm = () => {
 					}, 4000);
 					Swal.fire({
 						icon: "success",
-						title: "Sign up succesfully!",
-						text: "+10 RESPECT",
+						title: "Sign up succesful!",
+						text: "+100 RESPECT",
 						showConfirmButton: false,
 						timer: 3000,
 					});
@@ -180,6 +181,9 @@ const SignUpForm = () => {
 };
 
 const Wrapper = styled.div`
+	position: relative;
+	top: 0;
+	left: 0;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -187,8 +191,8 @@ const Wrapper = styled.div`
 	margin-right: auto;
 	background-color: #063333;
 	color: white;
-	width: 100vw;
-	height: 90vh;
+	width: 100%;
+	height: 100vh;
 	justify-content: center;
 `;
 
@@ -213,14 +217,16 @@ const Text = styled.div`
 `;
 
 const Form = styled.form`
+	overflow: hidden;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	justify-self: auto;
 	text-align: right;
-	margin: 40px;
+	margin: 60px 40px 40px 40px;
 	position: relative;
 	padding: 24px;
-	background-color: #010606;
+	background-color: black;
 	width: 42vw;
 	height: 80vh;
 	border-radius: 16px;

@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link as LinkRouter } from "react-router-dom";
 import { Link as LinkScroll } from "react-scroll";
+import { animateScroll as scroll } from "react-scroll";
 
 import LogoFMC from "../images/Logo.PNG";
 import { UserContext } from "./UserContext";
@@ -26,10 +27,14 @@ const Header = ({ toggle }) => {
 		}
 	}, []);
 
+	const toggleHome = () => {
+		scroll.scrollToTop();
+	};
+
 	return (
 		<Container>
 			<Box to="/">
-				<Logo src={LogoFMC} />
+				<Logo src={LogoFMC} onClick={toggleHome} />
 				<Name>FindMyCrypto</Name>
 			</Box>
 			<ScreenFit onClick={toggle}>
@@ -37,24 +42,74 @@ const Header = ({ toggle }) => {
 			</ScreenFit>
 			<Menu>
 				<Item>
-					<AboutLink to="about">About</AboutLink>
+					<AboutLink
+						to="about"
+						smooth={true}
+						duartion={500}
+						spy={true}
+						exact="true"
+						activeClass="active"
+						offset={-100}
+					>
+						About
+					</AboutLink>
 				</Item>
 				<Item>
-					<ServicesLink to="services">Services</ServicesLink>
+					<ServicesLink
+						to="services"
+						smooth={true}
+						duartion={500}
+						spy={true}
+						exact="true"
+						activeClass="active"
+						offset={-100}
+					>
+						Services
+					</ServicesLink>
 				</Item>
 				<Item>
-					<MapLink to="map">Map</MapLink>
+					<MapLink
+						to="map"
+						smooth={true}
+						duartion={500}
+						spy={true}
+						exact="true"
+						activeClass="active"
+						offset={-100}
+					>
+						Map
+					</MapLink>
 				</Item>
 				<Item>
 					{isAuthenticated || updatedUser ? (
 						<>
 							{" "}
-							<ProfileLink to="profile">Profile</ProfileLink>{" "}
+							<ProfileLink
+								to="profile"
+								smooth={true}
+								duartion={500}
+								spy={true}
+								exact="true"
+								activeClass="active"
+								offset={-100}
+							>
+								Profile
+							</ProfileLink>{" "}
 						</>
 					) : (
 						<>
 							{" "}
-							<SignupLink to="signup">Sign Up</SignupLink>{" "}
+							<SignupLink
+								to="signup"
+								smooth={true}
+								duartion={500}
+								spy={true}
+								exact="true"
+								activeClass="active"
+								offset={-100}
+							>
+								Sign Up
+							</SignupLink>{" "}
 						</>
 					)}
 				</Item>
@@ -83,9 +138,11 @@ const Container = styled.div`
 	align-items: center;
 	padding: 32px;
 	height: 100px;
-	z-index: 1000;
+	z-index: 100;
+	margin-top: -100;
 
-	@media screen and (max-width: 960px) {
+	@media screen and (max-width: 1024px) {
+		/* supposed to be 768px */
 		transition: 0.8s all ease;
 	}
 `;
@@ -111,10 +168,10 @@ const Name = styled.div`
 const ScreenFit = styled.div`
 	display: none;
 
-	@media screen and (max-width: 768px) {
+	@media screen and (max-width: 1024px) {
 		display: block;
 		position: absolute;
-		top: 2.5rem;
+		top: 1.5rem;
 		right: 0;
 		transform: translate(-100%, 60%);
 		font-size: 1.5rem;
@@ -130,7 +187,7 @@ const Menu = styled.ul`
 	list-style: none;
 	text-align: center;
 	margin-right: 7rem;
-	@media screen and (max-width: 768px) {
+	@media screen and (max-width: 1024px) {
 		display: none;
 	}
 `;
@@ -210,7 +267,7 @@ const SignupLink = styled(LinkScroll)`
 `;
 
 const ButtonBox = styled.div`
-	@media screen and (max-width: 768px) {
+	@media screen and (max-width: 1024px) {
 		display: none;
 	}
 `;

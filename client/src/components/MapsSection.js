@@ -1,27 +1,18 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import { useHistory } from "react-router";
 import styled from "styled-components";
-import Coin from "./Coin";
-import digitalCurrency from "../images/digitalCurrency.png";
 
-//
+import location from "../images/Location.png";
+import { FcSearch } from "react-icons/fc";
+import { FiArrowRight } from "react-icons/fi";
+import { SiBitcoinsv } from "react-icons/si";
 
-const About = () => {
-	const [coins, setCoins] = useState([]);
+const MapsSection = () => {
+	let history = useHistory();
 
-	let newArr = coins.slice(0, 2);
-
-	useEffect(() => {
-		axios
-			.get(
-				"https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false"
-			)
-			.then((res) => {
-				console.log(res.data);
-				setCoins(res.data);
-			})
-			.catch((err) => console.log(err));
-	}, []);
+	const handleButtonClick = () => {
+		history.push("/maps");
+	};
 
 	return (
 		<>
@@ -29,32 +20,23 @@ const About = () => {
 				<Wrapper>
 					<Row>
 						<Column1>
-							<CoinBox>
-								{newArr.map((coin) => {
-									return (
-										<Coin
-											key={coin.id}
-											name={coin.name}
-											image={coin.image}
-											symbol={coin.symbol}
-											volume={coin.market_cap}
-											price={coin.current_price}
-										/>
-									);
-								})}
-							</CoinBox>
+							<Button onClick={handleButtonClick}>
+								FindMyCrypto <SiBitcoinsv />
+							</Button>
 						</Column1>
 						<Column2>
 							<TextWrap>
-								<Top>Cryptocurrency ATM Locator</Top>
-								<Heading>Would you like to trade your crypto for cash?</Heading>
+								<Top>Find the closest cryptocurrency ATM</Top>
+								<Heading>
+									Let's locate of one these ATM's together <FcSearch />
+								</Heading>
 								<Subtitle>
-									Easily find one of many ATM's around you to exchange some
-									crypto for cash or to simply purchase one of your favorite
-									coins.
+									You can go to our Map section by clicking the big button to
+									the right.
+									<Arrow />
 								</Subtitle>
 								<ImageContainer>
-									<Image src={digitalCurrency} />
+									<Image src={location} />
 								</ImageContainer>
 							</TextWrap>
 						</Column2>
@@ -65,7 +47,7 @@ const About = () => {
 	);
 };
 
-export default About;
+export default MapsSection;
 
 const Container = styled.div`
 	color: white;
@@ -80,7 +62,7 @@ const Wrapper = styled.div`
 	display: grid;
 	z-index: 1;
 	height: 1200px;
-	width: 100%;
+	width: 100vw;
 	max-width: 1100px;
 	margin-right: auto;
 	margin-left: auto;
@@ -105,7 +87,7 @@ const Column1 = styled.div`
 	width: 200px;
 	margin-bottom: 15px;
 	grid-area: col1;
-	bottom: 816px;
+	bottom: 872px;
 `;
 
 const Column2 = styled.div`
@@ -152,6 +134,7 @@ const Subtitle = styled.p`
 	font-size: 18px;
 	line-height: 24px;
 	color: white;
+	display: flex;
 `;
 
 const ImageContainer = styled.div`
@@ -164,7 +147,42 @@ const Image = styled.img`
 	width: 650px;
 `;
 
-const CoinBox = styled.div`
-	justify-content: center;
-	text-align: left;
+const Button = styled.button`
+	position: relative;
+	top: 150px;
+	left: 150px;
+	border-radius: 500px;
+	padding: 0.35em 1.2em;
+	border: 0.1em solid #01bf71;
+	margin: 0 0.3em 0.3em 0;
+	box-sizing: border-box;
+	text-decoration: none;
+	font-size: 2rem;
+	font-weight: 700;
+	color: white;
+	background-color: #010606;
+	text-align: center;
+	transition: all 0.2s ease-in-out;
+	width: 30rem;
+	height: 30rem;
+	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+		rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+		rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+	&:hover {
+		transition: all 0.2s ease-in-out;
+		transform: scale(1.2);
+		color: #010606;
+		background-color: #01bf71;
+		cursor: pointer;
+	}
+`;
+
+const Arrow = styled(FiArrowRight)`
+	height: 100px;
+	width: 70px;
+	color: #01bf71;
+	position: relative;
+	left: 10px;
+	bottom: 25px;
 `;

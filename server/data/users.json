@@ -5,8 +5,7 @@
 		"email": "itachi.uchiha@gmail.com",
 		"password": "1234",
 		"btcWallet": "1z3x45f6c7f8g9d8f7d8szfa872sas",
-		"type": "visitor",
-		"reviews": ["1"]
+		"type": "visitor"
 	},
 	{
 		"firstName": "Naruto",
@@ -14,8 +13,7 @@
 		"email": "naruto.uzumaki@gmail.com",
 		"password": "1234",
 		"btcWallet": "9s834s5d5a43349d8s8gh8ty54ty6",
-		"type": "visitor",
-		"reviews": ["2"]
+		"type": "visitor"
 	},
 	{
 		"firstName": "Sasuke",

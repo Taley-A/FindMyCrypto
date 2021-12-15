@@ -1,62 +1,41 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import styled from "styled-components";
-import Coin from "./Coin";
-import digitalCurrency from "../images/digitalCurrency.png";
 
-//
+import SignUpButton from "./SignUpButton";
 
-const About = () => {
-	const [coins, setCoins] = useState([]);
+import JoinUs from "../images/JoinUs.png";
+import PiggyBank from "../images/PiggyBank.png";
 
-	let newArr = coins.slice(0, 2);
-
-	useEffect(() => {
-		axios
-			.get(
-				"https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false"
-			)
-			.then((res) => {
-				console.log(res.data);
-				setCoins(res.data);
-			})
-			.catch((err) => console.log(err));
-	}, []);
-
+const MapsSection = () => {
 	return (
 		<>
 			<Container>
 				<Wrapper>
 					<Row>
 						<Column1>
-							<CoinBox>
-								{newArr.map((coin) => {
-									return (
-										<Coin
-											key={coin.id}
-											name={coin.name}
-											image={coin.image}
-											symbol={coin.symbol}
-											volume={coin.market_cap}
-											price={coin.current_price}
-										/>
-									);
-								})}
-							</CoinBox>
-						</Column1>
-						<Column2>
 							<TextWrap>
-								<Top>Cryptocurrency ATM Locator</Top>
-								<Heading>Would you like to trade your crypto for cash?</Heading>
+								<Top>join us at FindMyCrypto</Top>
+								<Heading>
+									Take advantage of our special features by signing up!
+								</Heading>
 								<Subtitle>
-									Easily find one of many ATM's around you to exchange some
-									crypto for cash or to simply purchase one of your favorite
-									coins.
+									Whether you are a visitor or an operator, we have a bunch of
+									features that will make your crypto interactions easy and
+									seamless.
 								</Subtitle>
 								<ImageContainer>
-									<Image src={digitalCurrency} />
+									<Image src={JoinUs} />
 								</ImageContainer>
 							</TextWrap>
+						</Column1>
+						<Column2>
+							<ImageContainer>
+								<Image2 src={PiggyBank} />
+							</ImageContainer>
+							<Text>Click below to get started!</Text>
+							<Box>
+								<SignUpButton />
+							</Box>
 						</Column2>
 					</Row>
 				</Wrapper>
@@ -65,11 +44,10 @@ const About = () => {
 	);
 };
 
-export default About;
+export default MapsSection;
 
 const Container = styled.div`
-	color: white;
-	background: #022121;
+	background: white;
 
 	@media screen and (max-width: 768px) {
 		padding: 100px 0px;
@@ -79,8 +57,8 @@ const Container = styled.div`
 const Wrapper = styled.div`
 	display: grid;
 	z-index: 1;
-	height: 1200px;
-	width: 100%;
+	height: 100vh;
+	width: 100vw;
 	max-width: 1100px;
 	margin-right: auto;
 	margin-left: auto;
@@ -90,9 +68,11 @@ const Wrapper = styled.div`
 `;
 
 const Row = styled.div`
+	margin-top: 48px;
 	display: grid;
 	grid-auto-columns: minmax(auto, 1fr);
 	align-items: center;
+	height: 100vh;
 
 	@media screen and (max-width: 768px) {
 		grid-template-areas: "col1 col2";
@@ -101,11 +81,11 @@ const Row = styled.div`
 
 const Column1 = styled.div`
 	position: relative;
+	bottom: 750px;
 	color: white;
 	width: 200px;
 	margin-bottom: 15px;
 	grid-area: col1;
-	bottom: 816px;
 `;
 
 const Column2 = styled.div`
@@ -125,7 +105,7 @@ const TextWrap = styled.div`
 
 const Top = styled.div`
 	color: #01bf71;
-	font-size: 16px;
+	font-size: 24px;
 	line-height: 16px;
 	font-weight: 700;
 	letter-spacing: 1.4px;
@@ -139,7 +119,7 @@ const Heading = styled.h1`
 	font-size: 48px;
 	line-height: 1.1;
 	font-weight: 600;
-	color: white;
+	color: #022121;
 
 	@media screen and (max-width: 480px) {
 		font-size: 32px;
@@ -151,7 +131,8 @@ const Subtitle = styled.p`
 	margin-bottom: 35px;
 	font-size: 18px;
 	line-height: 24px;
-	color: white;
+	color: #022121;
+	display: flex;
 `;
 
 const ImageContainer = styled.div`
@@ -161,10 +142,25 @@ const ImageContainer = styled.div`
 
 const Image = styled.img`
 	border-radius: 20px;
-	width: 650px;
+	width: 600px;
+	height: 400px;
 `;
 
-const CoinBox = styled.div`
+const Image2 = styled.img`
+	border-radius: 20px;
+	width: 500px;
+	height: 400px;
+`;
+
+const Box = styled.div`
+	display: flex;
 	justify-content: center;
-	text-align: left;
+`;
+
+const Text = styled.h2`
+	text-align: center;
+	color: #022121;
+	font-size: 48px;
+	margin-top: 100px;
+	margin-bottom: 100px;
 `;

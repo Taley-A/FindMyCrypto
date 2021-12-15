@@ -8,6 +8,8 @@ import Header from "./components/Header";
 import Homepage from "./components/Homepage";
 import SignUpForm from "./components/SignUpForm";
 import Maps from "./components/Maps";
+import NewLocationForm from "./components/NewLocationForm";
+import AllLocations from "./components/AllLocations";
 
 const App = () => {
 	const [isOpen, setIsOpen] = useState(false);
@@ -29,6 +31,15 @@ const App = () => {
 					<Route path="/sign-up">
 						<SignUpForm />
 					</Route>
+					<Route path="/maps">
+						<MapsContainer>
+							<Maps />
+							<AllLocations />
+						</MapsContainer>
+					</Route>
+					<Route path="/new-location">
+						<NewLocationForm />
+					</Route>
 				</Switch>
 			</Main>
 		</BrowserRouter>
@@ -38,3 +49,7 @@ const App = () => {
 export default App;
 
 const Main = styled.div``;
+
+const MapsContainer = styled.div`
+	display: flex;
+`;

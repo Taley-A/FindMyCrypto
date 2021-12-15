@@ -2,9 +2,12 @@ import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
   :root {
-      --primary: #01BF71;
-      --secondary:#010606
-  }
+      --first: #01BF71;
+      --second:#010606;
+      --third: #022121;
+      --fourth:#063333;
+      --fifth:
+  } 
   
         *,
         *:before,

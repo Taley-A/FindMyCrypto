@@ -42,17 +42,21 @@ const getAllLocations = async (req, res) => {
 // Get a specific ATM with its id. ----------------------------------------------------------------------
 
 const getLocationById = async (req, res) => {
-	const { id } = req.params;
+	const { email } = req.params;
 
 	const client = new MongoClient(MONGO_URI, options);
 	try {
 		await client.connect();
 		const db = client.db("FindMyCrypto");
 
-		const result = await db.collection("locations").findOne({ atmId: id });
+		const result = await db.collection("locations").find().toArray;
+
+		let locations = result.filter((location) => {
+			location.ownerEmail === email;
+		});
 
 		result
-			? res.status(200).json({ status: 200, data: result })
+			? res.status(200).json({ status: 200, data: locations })
 			: res.status(404).json({ status: 404, data: "Location not found" });
 	} catch (err) {
 		res.status(500).json({
@@ -71,9 +75,9 @@ const addLocation = async (req, res) => {
 	const {
 		name,
 		address,
-		pinLocation,
+		latLng,
 		type,
-		cryptocurrncies,
+		cryptocurrencies,
 		kyc,
 		open,
 		status,
@@ -84,9 +88,9 @@ const addLocation = async (req, res) => {
 	if (
 		!name ||
 		!address ||
-		!pinLocation ||
+		!latLng ||
 		!type ||
-		!cryptocurrncies ||
+		!cryptocurrencies ||
 		!kyc ||
 		!open ||
 		!status ||
@@ -104,7 +108,7 @@ const addLocation = async (req, res) => {
 
 	try {
 		await client.connect();
-		const db = client.db("GroupProject");
+		const db = client.db("FindMyCrypto");
 
 		let newLocation = await db
 			.collection("locations")
@@ -199,14 +203,14 @@ const getAllReviews = async (req, res) => {
 // Get a review by its Id. ----------------------------------------------------------------------
 
 const getReviewById = async (req, res) => {
-	const { id } = req.params;
+	const { email } = req.params;
 
 	const client = new MongoClient(MONGO_URI, options);
 	try {
 		await client.connect();
 		const db = client.db("FindMyCrypto");
 
-		const result = await db.collection("reviews").findOne({ atmId: id });
+		const result = await db.collection("reviews").findOne({ email });
 
 		result
 			? res.status(200).json({ status: 200, data: result })

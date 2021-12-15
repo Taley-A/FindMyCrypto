@@ -29,7 +29,7 @@ app.use(morgan("dev"));
 app.get("/api/locations", getAllLocations);
 
 // Get location of ATM by id.
-app.get("/api/locations/:id", getLocationById);
+app.get("/api/locations/:email", getLocationById);
 
 // Add new location of an ATM.
 app.post("/api/newLocations", addLocation);
@@ -41,7 +41,7 @@ app.delete("/api/locations/:id/:email", deleteLocation);
 app.get("/api/reviews", getAllReviews);
 
 // Get Review by id.
-app.get("/api/reviews/:id", getReviewById);
+app.get("/api/reviews/:email", getReviewById);
 
 // Add new review to a location.
 app.post("/api/reviews/:atm_Id", addReview);

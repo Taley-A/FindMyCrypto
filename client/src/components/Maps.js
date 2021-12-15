@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from "react";
+import React, { useState, useRef, useCallback, useEffect } from "react";
 import styled from "styled-components";
 import {
 	GoogleMap,
@@ -6,7 +6,7 @@ import {
 	useLoadScript,
 	Marker,
 } from "@react-google-maps/api";
-import { formatRelative } from "date-fns";
+
 import MapsStyles from "../MapsStyles";
 
 const Maps = () => {
@@ -23,20 +23,37 @@ const Maps = () => {
 		libraries,
 	});
 
-	const center = {
+	const [centerPoint, setCenterPoint] = useState({
 		lat: 45.460815,
 		lng: -73.65126,
-	};
+	});
 
 	const options = {
 		styles: MapsStyles,
-		disableDefaultUI: true,
-		zoomControl: true,
 	};
 
-	const [selected, setSelected] = useState(null);
-	console.log(selected);
+	const [locations, setLocations] = useState([]);
 	const [markers, setMarkers] = useState([]);
+
+	useEffect(() => {
+		fetch(`/api/locations/`)
+			.then((res) => res.json())
+			.then((res) => {
+				setLocations(res.data);
+				console.log(res.data);
+			});
+	}, []);
+
+	useEffect(() => {
+		setMarkers([
+			locations.map((location) => {
+				return location.latLng;
+			}),
+		]);
+	});
+	console.log(markers);
+
+	const [selected, setSelected] = useState(null);
 
 	const handleMarkerClick = useCallback((event) => {
 		setMarkers((current) => [
@@ -44,15 +61,16 @@ const Maps = () => {
 			{
 				lat: event.latLng.lat(),
 				lng: event.latLng.lng(),
-				time: new Date(),
 			},
 		]);
+		setCenterPoint({
+			lat: event.latLng.lat(),
+			lng: event.latLng.lng(),
+		});
 	}, []);
 
-	const Locations = [];
-
 	return (
-		<>
+		<Container>
 			{loadError ? (
 				"Error loading maps."
 			) : !isLoaded ? (
@@ -62,13 +80,12 @@ const Maps = () => {
 					<GoogleMap
 						onLoad={handleMapLoad}
 						mapContainerStyle={mapContainerStyle}
-						center={center}
+						center={centerPoint}
 						zoom={12}
 						options={options}
 						onClick={handleMarkerClick}
 					>
 						{markers.map((marker) => {
-							console.log(marker);
 							return (
 								<Marker
 									key={`${marker.lat}-${marker.lng}`}
@@ -95,18 +112,32 @@ const Maps = () => {
 							>
 								<div>
 									<h2>Cryptocurrency ATM</h2>
-									<p>Added {formatRelative(selected.time, new Date())}</p>
 								</div>
 							</InfoWindow>
 						) : null}
 					</GoogleMap>
 				</Box>
 			)}
-		</>
+			<LocationsBox>
+				<LocationWrapper>
+					<SingleLocation></SingleLocation>
+				</LocationWrapper>
+			</LocationsBox>
+		</Container>
 	);
 };
 
 export default Maps;
+
+const LocationsBox = styled.div``;
+
+const LocationWrapper = styled.div``;
+
+const SingleLocation = styled.div``;
+
+const Container = styled.div`
+	display: flex;
+`;
 
 const Box = styled.div`
 	position: relative;
@@ -116,7 +147,7 @@ const mapContainerStyle = {
 	position: "relative",
 	border: "3px solid #010606",
 	marginTop: "var(--nav-height)",
-	height: "86vh",
+	height: "92vh",
 	width: "70vw",
 	zIndex: "1",
 	display: "flex",

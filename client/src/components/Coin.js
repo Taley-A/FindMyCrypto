@@ -10,7 +10,7 @@ const Coin = ({ image, name, symbol, price, volume }) => {
 					<Name>{name}</Name>
 				</Info>
 				<Data>
-					<Price>Current Price: ${price}</Price>
+					<Price>Current USD Price: ${price}</Price>
 					<Volume>Market Cap: ${volume.toLocaleString()}</Volume>
 				</Data>
 			</Row>
@@ -41,6 +41,7 @@ const Name = styled.h1`
 const Data = styled.div`
 	margin-top: 25px;
 	margin-bottom: 25px;
+	width: 500px;
 `;
 
 const Price = styled.p`
