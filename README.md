@@ -2,20 +2,33 @@
 
 This website was created using the MERN stack and a few packages to display my creativity and sense of style! I will also be hosting it very soon so you may enjoy at any given time 😄
 
-The main stuff I worked with:
+### **The main stuff I worked with:**
 
--MongoDB - Document Database
--Express(.js) - Node.js web framework
--React(.js) - client-side JavaScript framework
--Node(.js) - JavaScript web server
--Material UI
--Authentication with Auth0
--React Smooth Scroll
--Geocode 
--Google Maps API
--CoinMarketCap API
--Styled Components
--NPM
+- MongoDB - Document Database
+
+- Express(.js) - Node.js web framework
+
+- React(.js) - client-side JavaScript framework
+
+- Node(.js) - JavaScript web server
+
+- Material UI
+
+- Authentication with Auth0
+
+- React Smooth Scroll
+
+- Geocode 
+
+- Google Maps API
+
+- CoinMarketCap API
+
+- Styled Components
+
+- NPM
+- and more!
+
 
 
 ## The ultimate CRYPTOCURRENCY ATM LOCATOR
