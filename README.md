@@ -39,31 +39,59 @@ We help you display your crypto ATM's to all our visitors.
 
 Provide all the information about your ATM and allow users to interact with them by leaving reviews! Visitors can easily find them through our website and this allows you to have more visibity and drive traffic towards your machines.
 
+## Here is the Homepage
+
 ![image](https://user-images.githubusercontent.com/88402657/148930084-123fe082-b31a-4108-ac3d-94b6eb1a6cb5.png)
 
 ---
+
+## Services for the Type of users
 
 ![image](https://user-images.githubusercontent.com/88402657/148930378-5ab4e86b-d385-4f56-a6b7-9a80b854796e.png)
 
 ---
 
+## Map Info (click the big button)
+
 ![image](https://user-images.githubusercontent.com/88402657/148930434-3da05d61-b9f7-4399-b2f2-f7c274bb384b.png)
 
 ---
 
-![image](https://user-images.githubusercontent.com/88402657/148930538-47bd27a6-d356-44c7-b6ef-76c778609977.png)
+## Google Maps to locate ATM's
+
+![image](https://user-images.githubusercontent.com/88402657/148931941-d4acfc51-3abc-43ff-b5db-8c9a8706c936.png)
 
 ---
 
-![image](https://user-images.githubusercontent.com/88402657/148930473-0160772d-a8ce-47f3-8710-5a2e3d6b93cd.png)
+## Sign Up section
+
+![image](https://user-images.githubusercontent.com/88402657/148932040-9e1cd4c2-72bc-403f-9b97-29d7d9bdad60.png)
 
 ---
+
+## Authentifcation with Auth0
 
 ![image](https://user-images.githubusercontent.com/88402657/148930639-70c17174-ecc6-4ef1-98d6-77232ba331e1.png)
 
 ---
 
-![image](https://user-images.githubusercontent.com/88402657/148930710-441eb914-2ec9-4bbc-8442-0d3ad5f6c1d4.png)
+## Sign Up form 
+
+![image](https://user-images.githubusercontent.com/88402657/148932099-db78a1bc-3a2f-48df-b401-4a8df92a76ef.png)
+
+---
+
+## Logged in as an Operator
+
+![image](https://user-images.githubusercontent.com/88402657/148932256-5707c2c9-c539-435d-a06c-a2ad0f1682d0.png)
+
+---
+
+## Logged in as a Visitor
+
+![image](https://user-images.githubusercontent.com/88402657/148932401-6e868267-727a-4323-a57b-13ee8a7c2fa1.png)
+
+
 
 
 
